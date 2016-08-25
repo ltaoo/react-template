@@ -1,0 +1,23 @@
+{
+  "name": "react-template",
+  "version": "1.0.0",
+  "description": "react-template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "ltaoo",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.13.2",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.5",
+    "css-loader": "^0.24.0",
+    "style-loader": "^0.13.1"
+  }
+}
