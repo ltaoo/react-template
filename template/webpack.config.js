@@ -4,7 +4,6 @@ var webpack = require('webpack')
 module.exports = {
   entry: {
     app: [
-      "webpack-dev-server/client?http://localhost:8080",
       "webpack/hot/dev-server",
       "./src/index.js"
     ]
@@ -13,6 +12,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, './dist'),
     filename: 'bundle.js'
+  },
+
+  resolve: {
+    extensions: ['', '.js', '.scss']
   },
 
   module: {
@@ -24,7 +27,8 @@ module.exports = {
           presets: [
             require.resolve('babel-preset-es2015'),
             require.resolve('babel-preset-react')
-          ]
+          ],
+          cacheDirectory: true
         }
       },
       {
@@ -32,7 +36,7 @@ module.exports = {
         loader: 'style!css'
       },
       {
-        test: /\.scss$/, loaders: ['style', 'css', 'sass']
+        test: /\.scss$/, loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
       }
     ]
   },
@@ -41,8 +45,5 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
 
-  devServer: {
-    hot: true,
-    contentBase: './'
-  }
+  devtool: 'source-map'
 }
