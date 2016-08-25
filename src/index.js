@@ -1,4 +1,11 @@
-var app = require('./components/App.js')
-require('./styles/main.css')
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './components/App.js'
+import './styles/main.css'
 
-alert(app.name)
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
+)
+
+console.log('here')

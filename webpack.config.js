@@ -10,7 +10,16 @@ module.exports = {
 
   module: {
     loaders: [
-      {test: /\.js$/, loader: 'babel'},
+      {
+        test: /\.js$/, 
+        loader: 'babel',
+        query: {
+          presets: [
+            require.resolve('babel-preset-es2015'),
+            require.resolve('babel-preset-react')
+          ],
+        }
+      },
       {test: /\.css$/, loader: 'style!css'}
     ]
   }
