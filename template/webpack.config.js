@@ -1,8 +1,14 @@
 var path = require('path')
 var webpack = require('webpack')
 
+var nodeModulesPath = './node_modules'
+
 module.exports = {
-  entry: "./src/index.js",
+  entry: [
+    "webpack-dev-server/client?http://localhost:8080",
+    "webpack/hot/dev-server",
+    "./src/index.js"
+  ],
 
   output: {
     path: path.join(__dirname, './dist'),
@@ -10,7 +16,10 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.scss']
+    extensions: ['', '.js', 'jsx'],
+    alias: {
+      //'react': path.join(nodeModulesPath, '/react/dist/react.js')
+    }
   },
 
   module: {
@@ -40,5 +49,11 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
 
-  devtool: 'source-map'
+  devtool: 'source-map',
+
+  devServer: {
+    hot: true,
+    contentBase: './',
+    quiet: true
+  }
 }
