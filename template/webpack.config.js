@@ -1,17 +1,15 @@
 var path = require('path')
 var webpack = require('webpack')
 
-var nodeModulesPath = './node_modules'
-
 module.exports = {
   entry: [
     "webpack-dev-server/client?http://localhost:8080",
-    "webpack/hot/dev-server",
+    "webpack/hot/only-dev-server",
     "./src/index.js"
   ],
 
   output: {
-    path: path.join(__dirname, './dist'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
 
@@ -25,35 +23,28 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/, 
-        loader: 'babel',
-        query: {
+        test: /\.js?$/, 
+        loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react'],
+        include: path.join(__dirname, 'src')
+        /*query: {
           presets: [
             require.resolve('babel-preset-es2015'),
             require.resolve('babel-preset-react')
           ],
           cacheDirectory: true
-        }
-      },
-      {
+        } */      
+      }, {
         test: /\.css$/, 
         loader: 'style!css'
-      },
-      {
+      }, {
         test: /\.scss$/, loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
       }
     ]
   },
 
   plugin: [
-    new webpack.HotModuleReplacementPlugin()
+    //new webpack.HotModuleReplacementPlugin()
   ],
 
-  devtool: 'source-map',
-
-  devServer: {
-    hot: true,
-    contentBase: './',
-    quiet: true
-  }
+  devtool: 'source-map'
 }
