@@ -31,6 +31,9 @@ npm run build
 - es6 语法
 - scss 支持以及 source-map
 - hot-reload
+- react-router
+- redux
+     - redux-thunk
 
 ## todo
 - 分离公共代码（第三方类库引用？）与业务代码

@@ -1,8 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, hashHistory, browserHistory } from 'react-router'
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
+// redux 日志中间件
+import createLogger from 'redux-logger'
+// thunk
+import thunk from 'redux-thunk'
 // 全局样式
 import './styles/main.scss'
 // 路由配置
@@ -11,7 +15,7 @@ import routes from './routes'
 // reducer
 import rootReducer from './reducers'
 // 返回一个有 dispatch 方法的对象
-const store = createStore(rootReducer)
+export const store = createStore(rootReducer, applyMiddleware(thunk, createLogger()))
 
 ReactDOM.render(
 	//

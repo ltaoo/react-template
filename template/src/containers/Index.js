@@ -27,13 +27,25 @@ class Index extends Component {
 	_loadData() {
 		const {dispatch} = this.props
 		dispatch(fetchBookList())
+		// fetchBookList()
+		// 	.then(action => {
+		// 		dispatch(action)
+		// 		alert('获取成功')
+		// 	})
+		// 	.catch(err => {
+		// 		alert('获取失败', err)
+		// 	})
 	}
 	// 真正的渲染视图
   	render() {
+  		const {state} = this.props
 	    return (
 	      	<div>
 	      		<h3>Index Page</h3>
-	      		<button onClick={this._loadData.bind(this)}>点击加载数据</button>
+	      		<button 
+	      			onClick={this._loadData.bind(this)}
+	      			disabled = {state.disable ? true : false}
+	      		>{state.disable ? '加载中...' : '获取数据'}</button>
 	      		{this._renderList.call(this)}
 	      	</div>
 	    )
