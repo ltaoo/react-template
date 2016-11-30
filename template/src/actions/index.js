@@ -1,13 +1,14 @@
 import $ from 'jquery'
 
-export const FETCHING = "FETCHING"
+export const FETCHING_BOOK = "FETCHING_BOOK"
 export const FETCH_BOOK_LIST = "FETCH_BOOK_LIST"
-export const FETCH_FAIL = "FETCH_FAIL"
+export const FETCH_BOOK_FAIL = "FETCH_BOOK_FAIL"
+
 
 
 export const fetchBookList = () => dispatch => {
 	dispatch({
-		type: FETCHING,
+		type: FETCHING_BOOK,
 		value: 'https://api.douban.com/v2/book/search?q=react&count=5'
 	})
 	$.ajax({
@@ -22,7 +23,34 @@ export const fetchBookList = () => dispatch => {
 		},
 		error(err) {
 			return dispatch({
-				type: FETCH_FAIL,
+				type: FETCH_BOOK_FAIL,
+				value: JSON.stringify(err)
+			})
+		}
+	})
+}
+
+export const FETCHING_MUSIC = "FETCHING_MUSIC"
+export const FETCH_MUSIC_LIST = "FETCH_MUSIC_LIST"
+export const FETCH_MUSIC_FAIL = "FETCH_MUSIC_FAIL"
+export const fetchMusicList = () => dispatch => {
+	dispatch({
+		type: FETCHING_MUSIC,
+		value: 'https://api.douban.com/v2/music/search?q=河图&count=5'
+	})
+	$.ajax({
+		url: 'https://api.douban.com/v2/music/search?q=河图&count=5', 
+		jsonp: 'callback',
+		dataType: "jsonp",
+		success(res) {
+			return dispatch({
+				type: FETCH_MUSIC_LIST,
+				value: res.musics
+			})
+		},
+		error(err) {
+			return dispatch({
+				type: FETCH_MUSIC_FAIL,
 				value: JSON.stringify(err)
 			})
 		}
