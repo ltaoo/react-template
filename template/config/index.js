@@ -2,7 +2,16 @@ const path = require('path')
 
 module.exports = {
 	build: {
-		assetsRoot: path.resolve(__dirname, '../dist')
+		env: require('./prod.env'),
+		// 用来指定打包后生成的 html 文件名
+		index: path.resolve(__dirname, '../dist/index.html'),
+		assetsRoot: path.resolve(__dirname, '../dist'),
+		assetsSubDirectory: 'static',
+		assetsPublicPath: '/',
+		productionSourceMap: true,
+		// Gzip 默认是关闭的，因为服务器会帮助做这一工作，如果要开启需要先安装 compression-webpack-plugin
+		productionGzip: false,
+		productionGzipExtensions: ['js', 'css']
 	},
 	dev: {
 		env: require('./dev.env'),

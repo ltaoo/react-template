@@ -8,7 +8,7 @@ import createLogger from 'redux-logger'
 // thunk
 import thunk from 'redux-thunk'
 // 全局样式
-import './styles/main.scss'
+// import './styles/main.scss'
 // 路由配置
 import routes from './routes'
 // 暴露给所有子组件有 dispatch 的 store 对象

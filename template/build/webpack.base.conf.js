@@ -1,4 +1,5 @@
 const path = require('path')
+const extractTextPlugin = require('extract-text-webpack-plugin')
 
 const config = require('../config')
 
@@ -35,14 +36,6 @@ module.exports = {
 	},
 	module: {
 		loaders: [
-			{
-        		test: /\.css$/, 
-        		loader: 'style!css'
-      		}, 
-      		{
-        		test: /\.scss$/, 
-        		loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
-      		},
 			{
 				test: /\.json/,
 				loader: 'json'
