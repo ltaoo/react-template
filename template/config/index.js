@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
 	build: {
-
+		assetsRoot: path.resolve(__dirname, '../dist')
 	},
 	dev: {
 		env: require('./dev.env'),
