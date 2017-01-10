@@ -36,14 +36,6 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				test: /\.js/,
-				loader: 'babel',
-				include: [
-					path.join(projectRoot, 'src')
-				],
-				exclude: /node_modules/
-			},
-			{
         		test: /\.css$/, 
         		loader: 'style!css'
       		}, 

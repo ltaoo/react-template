@@ -1,3 +1,4 @@
+const path = require('path')
 const config = require('../config')
 const webpack = require('webpack')
 const baseWebpackConfig = require('./webpack.base.conf')
@@ -10,14 +11,20 @@ const friendlyError = require('friendly-errors-webpack-plugin')
 Object.keys(baseWebpackConfig.entry).forEach(name => {
 	baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
-
+const projectRoot = path.resolve(__dirname, '../')
 // 导出配置
 module.exports = merge(baseWebpackConfig, {
 	module: {
-		loaders: [{
-			test: /\.css$/,
-			loader: 'style!css'
-		}]
+		loaders: [
+			{
+				test: /\.js/,
+				loaders: ['react-hot', 'babel'],
+				include: [
+					path.join(projectRoot, 'src')
+				],
+				exclude: /node_modules/
+			}
+		]
 	},
 	devtool: '#eval-source-map',
 	plugins: [
