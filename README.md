@@ -1,6 +1,6 @@
 # 基于 webpack 的 react 开发环境
 
-借助`vue-cli`可以快速配置 react 开发环境。
+借助[`vue-cli`](https://github.com/vuejs/vue-cli)可以快速配置 react 开发环境，参考[`vue-templates/webpack`](https://github.com/vuejs-templates/webpack)的项目结构与配置。
 
 ## 使用
 
