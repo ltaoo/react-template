@@ -3,13 +3,13 @@
 require('shelljs/global')
 env.NODE_ENV = 'production'
 
-const path = require('path')
-const ora = require('ora')
-const webpack = require('webpack')
+var path = require('path')
+var ora = require('ora')
+var webpack = require('webpack')
 // 通用配置
-const config = require('../config')
+var config = require('../config')
 // webpack 打包配置
-const webpackConfig = require('./webpack.prod.conf')
+var webpackConfig = require('./webpack.prod.conf')
 
 console.log(`
 	提示:
@@ -18,11 +18,11 @@ console.log(`
 `)
 
 // 显示进度
-const spinner = ora('building for production')
+var spinner = ora('building for production')
 spinner.start()
 
 // 获取到打包的文件夹路径
-const assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
+var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
 // 删除已经存在的打包文件夹, -rf 参数是用来删除非空文件夹
 rm('-rf', assetsPath)
 // 创建打包

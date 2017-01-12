@@ -1,23 +1,23 @@
-const path = require('path')
-const webpack = require('webpack')
-const merge = require('webpack-merge')
+var path = require('path')
+var webpack = require('webpack')
+var merge = require('webpack-merge')
 // 提取文本插件，用来生成 css 文件
-const extractTextPlugin = require('extract-text-webpack-plugin')
-const htmlWebpackPlugin = require('html-webpack-plugin')
+var extractTextPlugin = require('extract-text-webpack-plugin')
+var htmlWebpackPlugin = require('html-webpack-plugin')
 
-const config = require('../config')
-const utils = require('./utils')
-const baseWebpackConfig = require('./webpack.base.conf')
+var config = require('../config')
+var utils = require('./utils')
+var baseWebpackConfig = require('./webpack.base.conf')
 
-const env = config.build.env
+var env = config.build.env
 
-const webpackConfig = merge(baseWebpackConfig, {
+// loaders，把样式 loaders 和 js loaders 放到数组中z
+var loaders = utils.styleLoaders({sourceMap: config.build.productionSourceMap, extract: true}).concat(utils.jsLoader({hot: false}))
+
+var webpackConfig = merge(baseWebpackConfig, {
 	module: {
 		// 调用 styleLoaders 返回 loaders 并制定要提取出单独的 css 文件
-		loaders: [
-			utils.jsLoader({hot: false}),
-			...utils.styleLoaders({sourceMap: config.build.productionSourceMap, extract: true})
-		]
+		loaders: loaders
 	},
 	devtool: config.build.productionSourceMap ? '#source-map' : false,
 	output: {

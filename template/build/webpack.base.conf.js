@@ -1,15 +1,15 @@
-const path = require('path')
-const extractTextPlugin = require('extract-text-webpack-plugin')
+var path = require('path')
+var extractTextPlugin = require('extract-text-webpack-plugin')
 
-const config = require('../config')
+var config = require('../config')
 
-const projectRoot = path.resolve(__dirname, '../')
-const env = process.env.NODE_ENV
-const cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
-const cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
-const useCssSourceMap = cssSourceMapDev || cssSourceMapProd
+var projectRoot = path.resolve(__dirname, '../')
+var env = process.env.NODE_ENV
+var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
+var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
+var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 // 静态服务器目录，也是打包后文件的生成目录
-const assetsRoot = config.build.assetsRoot
+var assetsRoot = config.build.assetsRoot
 // 导出基础配置
 module.exports = {
 	entry: {

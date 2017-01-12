@@ -1,27 +1,24 @@
-const path = require('path')
-const config = require('../config')
-const webpack = require('webpack')
-const baseWebpackConfig = require('./webpack.base.conf')
-const utils = require('./utils')
+var path = require('path')
+var config = require('../config')
+var webpack = require('webpack')
+var baseWebpackConfig = require('./webpack.base.conf')
+var utils = require('./utils')
 
-const merge = require('webpack-merge')
-const htmlWebpackPlugin = require('html-webpack-plugin')
-const friendlyError = require('friendly-errors-webpack-plugin')
+var merge = require('webpack-merge')
+var htmlWebpackPlugin = require('html-webpack-plugin')
+var friendlyError = require('friendly-errors-webpack-plugin')
 
 // 由于支持热重载，所以配置文件中的 entry 字段需要加上 /build/dev-client
 Object.keys(baseWebpackConfig.entry).forEach(name => {
 	baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
-const projectRoot = path.resolve(__dirname, '../')
-const styleLoaders = utils.styleLoaders({sourceMap: config.build.productionSourceMap})
+var projectRoot = path.resolve(__dirname, '../')
+var loaders = utils.styleLoaders({sourceMap: config.build.productionSourceMap}).concat(utils.jsLoader({hot: true}))
 // console.log(styleLoaders)
 // 导出配置
 module.exports = merge(baseWebpackConfig, {
 	module: {
-		loaders: [
-			utils.jsLoader({hot: true}),
-			...styleLoaders
-		]
+		loaders: loaders	
 	},
 	devtool: '#eval-source-map',
 	plugins: [
