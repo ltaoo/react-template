@@ -11,11 +11,10 @@ var config = require('../config')
 // webpack 打包配置
 var webpackConfig = require('./webpack.prod.conf')
 
-console.log(`
-	提示:
-	打包后得到的网站，必须在 HTTP 服务器下才能工作,
-	不能直接打开
-`)
+console.log('\n'+
+	'提示:\n'+
+	'打包后得到的网站，必须在 HTTP 服务器下才能工作,\n'+
+	'不能直接打开\n')
 
 // 显示进度
 var spinner = ora('building for production')

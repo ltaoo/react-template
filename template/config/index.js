@@ -1,4 +1,4 @@
-const path = require('path')
+var path = require('path')
 
 module.exports = {
 	build: {
@@ -7,7 +7,7 @@ module.exports = {
 		index: path.resolve(__dirname, '../dist/index.html'),
 		assetsRoot: path.resolve(__dirname, '../dist'),
 		assetsSubDirectory: 'static',
-		assetsPublicPath: '/',
+		assetsPublicPath: './',
 		productionSourceMap: true,
 		// Gzip 默认是关闭的，因为服务器会帮助做这一工作，如果要开启需要先安装 compression-webpack-plugin
 		productionGzip: false,

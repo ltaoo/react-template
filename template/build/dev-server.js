@@ -56,7 +56,7 @@ var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsS
 app.use(staticPath, express.static('./static'))
 
 // 服务器 url 地址
-var uri = `http://localhost:${port}`
+var uri = 'http://localhost:'+port
 
 // 启动服务器
 var server = app.listen(port, (err) => {

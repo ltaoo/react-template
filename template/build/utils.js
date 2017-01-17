@@ -3,6 +3,8 @@ var extractTextPlugin = require('extract-text-webpack-plugin')
 var config = require('../config')
 var projectRoot = path.resolve(__dirname, '../')
 
+var production = process.env.NODE_ENV === 'production' ? true : false
+
 // 这个函数用来把传入的参数和打包文件夹拼接
 // 至于为什么要写成一个函数，因为会调用两次，如果每次都这样写不是很麻烦吗？现在只要调用一个函数就可以了
 exports.assetsPath = (_path) => {
@@ -25,12 +27,12 @@ exports.cssLoaders = (options) => {
 				loader = loader.replace(/\?/, '-loader')
 				extraParamChar = '&'
 			} else {
-				loader = `${loader}-loader`
+				loader = loader + '-loader'
 				extraParamChar = '?'
 			}
 
 			//
-			return loader + (options.sourceMap ? `${extraParamChar}sourceMap` : '')
+			return loader + (options.sourceMap ? extraParamChar+'sourceMap' : '')
 			// return loader
 		})
 
@@ -43,7 +45,7 @@ exports.cssLoaders = (options) => {
 	}
 
 	return {
-		css: generateLoaders(['css']),
+		css: production ? generateLoaders(['css']) : generateLoaders(['style', 'css'])
 		// postcss: generateLoaders(['css']),
 		// scss: generateLoaders(['css', 'sass']),
 	}
