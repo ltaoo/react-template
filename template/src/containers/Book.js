@@ -1,5 +1,4 @@
 import React, { Component } from 'react' 
-import { Link } from 'react-router'
 import $ from 'jquery'
 
 // 数据
@@ -12,6 +11,16 @@ import Item from '../components/Item'
 export default class Book extends Component {
 	constructor(props) {
 		super(props)
+
+		this.state = {}
+	}
+
+	componentWillMount() {
+		// subscribe 函数接收一个函数作为参数，当 state 发生改变时会调用该函数
+		store.subscribe(() => {
+			const state = store.getState()
+			this.setState(state)
+		})
 	}
 	// 获取数据方法
 	_loadData() {
@@ -22,12 +31,13 @@ export default class Book extends Component {
 	// 视图显示内容
   	render() {
   		const state = store.getState()
+
   		console.log(state)
   		// 默认显示的内容
   		let container = null
   		// 最后才是获取数据成果的视图
-  		if(state.loaded) {
-  			container = state.books.map((book, index) => {
+  		if(this.state.loaded) {
+  			container = this.state.books.map((book, index) => {
   				return <Item
   					key = {index}
   					title = {book.title}

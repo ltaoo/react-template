@@ -4,7 +4,7 @@ const index = (state = {loaded: false}, action)=> {
     switch(action.type) {
         case types.FETCH_BOOK_LIST:
             return Object.assign({}, state, {
-                booklist: action.value,
+				books: action.value,
 				loaded: true
             })
         default:
