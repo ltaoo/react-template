@@ -5,6 +5,7 @@ import $ from 'jquery'
 // 组件
 import Item from '../components/Item'
 
+
 export default class Book extends Component {
 	constructor(props) {
 		super(props)
@@ -90,3 +91,4 @@ export default class Book extends Component {
 	    )
   	}
 }
+
